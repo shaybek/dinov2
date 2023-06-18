@@ -26,4 +26,8 @@ transformations=transforms.Compose([
 ])
 pixel_values=transformations(image).unsqueeze(0)
 outputs=model.forward_features(pixel_values)
-print("Outputs",outputs)
+for k,v in outputs.items():
+    if isinstance(v,torch.Tensor):
+        print(k,v.shape)
+    else:
+        print(k,v)
